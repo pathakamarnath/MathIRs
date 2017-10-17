@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head><title>MathIRs: Math Information Retrieval System - Sponsored by DST-SERB</title>
+<!-- CSS styles for page itself -->
+<script language="JavaScript">
+    function showInput() {
+    
+        document.getElementById('display').innerHTML = document.getElementById("user_input").value;    
+        
+    }
+  </script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+  });
+</script>
+
+<script type="text/javascript" src="../MathJax/MathJax.js"></script>
+</script>
+<style> 
+.flex-container {
+    display: -webkit-flex;
+    display: flex;  
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+    text-align: right;
+}
+
+.flex-container > * {
+    padding: 15px;
+    -webkit-flex: 1 100%;
+    flex: 1 100%;
+}
+
+.article {
+    text-align: left;
+}
+
+header {background: orange;color:white;}
+footer {background: white;color:black;position:absolute;
+   bottom:0;width:100%;
+   }
+
+    
+.nav {background:#eee;}
+
+.nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+.nav ul a {
+    text-decoration: none;
+}
+
+@media all and (min-width: 768px) {
+    .nav {text-align:left;-webkit-flex: 1 auto;flex:1 auto;-webkit-order:1;order:1;}
+    .article {-webkit-flex:5 0px;flex:5 0px;-webkit-order:2;order:2;}
+    footer {-webkit-order:3;order:3;}
+}
+</style>
+<!-- CSS styles for images in footer -->
+<style type="text/css">
+.contain {
+max-width:960px;
+text-align:center;
+
+}
+
+.category {
+position:relative;
+display: inline-block;
+float:left;
+padding-left:270px;
+
+}
+</style>
+<!-- CSS styles for math image in body -->
+<style type="text/css">
+.contains {
+max-width:960px;
+text-align:center;
+}
+
+.categoryy {
+position:relative;
+display: inline-block;
+float:left;
+padding-left:50px;
+
+}
+</style>
+<!-- CSS styles for standard search box -->
+<style type="text/css">
+	#tfheader{
+		background-color:#ffffff;
+	}
+	#tfnewsearch{
+		float:center;
+		padding:20px;
+	}
+	.tftextinput{
+		margin: 0;
+		padding: 5px 15px;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size:14px;
+		border:1px solid #0076a3; border-right:0px;
+		border-top-left-radius: 5px 5px;
+		border-bottom-left-radius: 5px 5px;
+	}
+	.tfbutton {
+		margin: 0;
+		padding: 5px 15px;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size:14px;
+		outline: none;
+		cursor: pointer;
+		text-align: center;
+		text-decoration: none;
+		color: #ffffff;
+		border: solid 1px #0076a3; border-right:0px;
+		background: #0095cd;
+		background: -webkit-gradient(linear, left top, left bottom, from(#00adee), to(#0078a5));
+		background: -moz-linear-gradient(top,  #00adee,  #0078a5);
+		border-top-right-radius: 5px 5px;
+		border-bottom-right-radius: 5px 5px;
+	}
+	.tfbutton:hover {
+		text-decoration: none;
+		background: #007ead;
+		background: -webkit-gradient(linear, left top, left bottom, from(#0095cc), to(#00678e));
+		background: -moz-linear-gradient(top,  #0095cc,  #00678e);
+	}
+	/* Fixes submit button height problem in Firefox */
+	.tfbutton::-moz-focus-inner {
+	  border: 0;
+	}
+	.tfclear{
+		clear:both;
+	}
+</style>
+<style>
+p.ex1 {
+    margin-left: -11cm;
+}
+</style>
+
+
+</head>
+<body>
+
+<script>
+  //
+  //  Use a closure to hide the local variables from the
+  //  global namespace
+  //
+  (function () {
+    var QUEUE = MathJax.Hub.queue;  // shorthand for the queue
+    var math = null;                // the element jax for the math output.
+
+    //
+    //  Get the element jax when MathJax has produced it.
+    //
+    QUEUE.Push(function () {
+      math = MathJax.Hub.getAllJax("MathOutput")[0];
+    });
+
+    //
+    //  The onchange event handler that typesets the
+    //  math entered by the user
+    //
+    window.UpdateMath = function (TeX) {
+      QUEUE.Push(["Text",math,"\\displaystyle{"+TeX+"}"]);
+    }
+  })();
+</script>
+
+<div class="flex-container">
+
+<header>
+  <a href="  http://localhost:8080/MathIRs/AboutUs.jsp">About Us</a>
+  &nbsp;
+   <a href=" http://localhost:8080/MathIRs/SampleQueries.html ">Sample Queries</a>
+ &nbsp;
+    <a href=" http://localhost:8080/MathIRs/Feedback.jsp ">Feedback</a>
+   &nbsp;
+    <a href=" http://localhost:8080/MathIRs/Help.jsp ">Help</a>
+</header>
+<br><br>
+
+<div align="center" class="categoryy">
+        
+        <h1>MathIRs: Math Information Retrieval System</h1>
+        
+        </div>
+
+<br><br>
+
+	<center><p>Enter your query in Text/Math or both</p.</center>
+
+	<div id="tfheader">
+	<form id="tfnewsearch" method="get" action="http://localhost:8080/nutch-0.9/search.jsp">
+	        <input type="text" class="tftextinput" name="query" id="MathInput" size="70" onchange="UpdateMath(this.value)"><input type="submit" value="search" class="tfbutton" onclick="showInput();">
+	</form>
+	
+	<div id="MathOutput">
+	<p class="ex1">	<b>Rendered Formula: ${}$</b><p>
+	</div>
+	
+	 
+  	<p><span id='display'></span></p>
+	<div class="tfclear"></div>
+	</div>
+	
+
+<footer>
+
+	<table>
+	<tr><td align="center">        <img src="http://localhost:8080/MathIRs/dstserb.png" height="30%" width="30%"/> </td>
+	    <td align="center">        <img src="http://localhost:8080/MathIRs/nitmz.png" height="30%" width="30%"/> </td>
+	    <td align="center">        <img src="http://localhost:8080/MathIRs/nutch.gif" height="30%" width="30%"/> </td>
+	</tr>
+	<tr><td align="center">        Sponsored by DST-SERB </td>
+	    <td align="center">        Developed by NIT Mizoram</td>
+	    <td align="center">        Powered by NUTCH </td>
+	</tr>
+	</table>
+
+   
+</footer>
+</div>
+</body>
+</html>
+
